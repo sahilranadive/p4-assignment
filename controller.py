@@ -70,7 +70,7 @@ while True:
     counter_s2 = controllers['s2'].register_read('counter_egress', index_register)
     counter_s3 = controllers['s3'].register_read('counter_ingress', index_register)
     
-    print_link('s2','s3')
+    print_link('s2','s3',index_register)
 
     controllers['s2'].register_write('counter_egress', index_register, 0)
     controllers['s3'].register_write('counter_ingress', index_register, 0)
@@ -87,7 +87,7 @@ while True:
     counter_s3 = controllers['s3'].register_read('counter_egress', index_register)
     counter_s4 = controllers['s4'].register_read('counter_ingress', index_register)
     
-    print_link('s3','s4')
+    print_link('s3','s4', index_register)
 
     controllers['s3'].register_write('counter_egress', index_register, 0)
     controllers['s4'].register_write('counter_ingress', index_register, 0)
@@ -104,7 +104,7 @@ while True:
     counter_s4 = controllers['s4'].register_read('counter_egress', index_register)
     counter_s1 = controllers['s1'].register_read('counter_ingress', index_register)
     
-    print_link('s4','s1')
+    print_link('s4','s1', index_register)
     
     controllers['s4'].register_write('counter_egress', index_register, 0)
     controllers['s1'].register_write('counter_ingress', index_register, 0)
