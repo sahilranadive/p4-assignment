@@ -25,7 +25,7 @@ control MyIngress(inout headers hdr,
                   inout standard_metadata_t standard_metadata) {
 
     /* TODO: Define the register array(s) that you will use in the ingress pipeline */
-    inout register<bit<32>>(2) counter_ingress;
+    register<bit<32>>(2) counter_ingress;
     // counter_ingress.write(0, 0);
     // counter_ingress.write(1, 0);
 
@@ -70,8 +70,8 @@ control MyEgress(inout headers hdr,
                  inout standard_metadata_t standard_metadata) {
 
     /* TODO: Define the register array(s) that you will use in the ingress pipeline */
-    inout register<bit<32>>(2) counter_egress;
-    inout register<bit<32>>(1) active_counter_index;
+    register<bit<32>>(2) counter_egress;
+    register<bit<32>>(1) active_counter_index;
     // counter_egress.write(0, 0);
     // counter_egress.write(1, 0);
     // active_counter_index.write(0, 0);
