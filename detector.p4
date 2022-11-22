@@ -26,8 +26,8 @@ control MyIngress(inout headers hdr,
 
     /* TODO: Define the register array(s) that you will use in the ingress pipeline */
     register<bit<32>>(2) counter_ingress;
-    counter_ingress.write(0, 0);
-    counter_ingress.write(1, 0);
+    // counter_ingress.write(0, 0);
+    // counter_ingress.write(1, 0);
 
     action forward(bit<9> egress_port){
         standard_metadata.egress_spec = egress_port;
