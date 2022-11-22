@@ -47,7 +47,7 @@ control MyIngress(inout headers hdr,
 
     apply {
       /* TODO: This is where you need to increment the active counter */
-        inout bit<32> temp;
+        bit<32> temp;
         if (hdr.ipv4.ecn == 0) {
             counter_ingress.read(temp, 0);
             counter_ingress.write(0, temp+1);
@@ -78,8 +78,8 @@ control MyEgress(inout headers hdr,
 
     apply {
         /* TODO: This is where you need to increment the active counter */
-        inout bit<32> temp;
-        inout bit<2> index;
+        bit<32> temp;
+        bit<2> index;
         active_counter_index.read((bit<32>)index, 0);
         counter_egress.read(temp, (bit<32>)index);
         counter_egress.write((bit<32>)index, temp+1);
