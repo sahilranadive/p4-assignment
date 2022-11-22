@@ -25,7 +25,7 @@ control MyIngress(inout headers hdr,
                   inout standard_metadata_t standard_metadata) {
 
     /* TODO: Define the register array(s) that you will use in the ingress pipeline */
-    register<bit<32>>(2) counter_ingress;
+    inout register<bit<32>>(2) counter_ingress;
     // counter_ingress.write(0, 0);
     // counter_ingress.write(1, 0);
 
@@ -47,7 +47,7 @@ control MyIngress(inout headers hdr,
 
     apply {
       /* TODO: This is where you need to increment the active counter */
-        bit<32> temp;
+        inout bit<32> temp;
         if (hdr.ipv4.ecn == 0) {
             counter_ingress.read(temp, 0);
             counter_ingress.write(0, temp+1);
@@ -70,16 +70,16 @@ control MyEgress(inout headers hdr,
                  inout standard_metadata_t standard_metadata) {
 
     /* TODO: Define the register array(s) that you will use in the ingress pipeline */
-    register<bit<32>>(2) counter_egress;
-    register<bit<32>>(1) active_counter_index;
+    inout register<bit<32>>(2) counter_egress;
+    inout register<bit<32>>(1) active_counter_index;
     // counter_egress.write(0, 0);
     // counter_egress.write(1, 0);
     // active_counter_index.write(0, 0);
 
     apply {
         /* TODO: This is where you need to increment the active counter */
-        bit<32> temp;
-        bit<2> index;
+        inout bit<32> temp;
+        inout bit<2> index;
         active_counter_index.read((bit<32>)index, 0);
         counter_egress.read(temp, (bit<32>)index);
         counter_egress.write((bit<32>)index, temp+1);
