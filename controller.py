@@ -104,63 +104,55 @@ while True:
         print("Packets were lost on the link from port 2 of s1 to port 1 of s2")
     
 
-    index_register = controllers['s2'].register_read('active_counter_index', 0)
-    new_index_register_value = 0
-    if index_register == 0:
-        new_index_register_value = 1
-    controllers['s2'].register_write('active_counter_index', 0, new_index_register_value)
+    # index_register = controllers['s2'].register_read('active_counter_index', 0)
+    # new_index_register_value = 0
+    # if index_register == 0:
+    #     new_index_register_value = 1
+    controllers['s2'].register_write('active_counter_index', 0, counter_index)
 
-    counter_s2 = controllers['s2'].register_read('counter_egress', index_register)
-    counter_s3 = controllers['s3'].register_read('counter_ingress', index_register)
+    counter_s2 = controllers['s2'].register_read('counter_egress', 1-counter_index)
+    counter_s3 = controllers['s3'].register_read('counter_ingress', 1-counter_index)
     
-    print_link('s2','s3',index_register)
+    print_link('s2','s3',controllers['s2'].register_read('active_counter_index', 0))
 
-    controllers['s2'].register_write('counter_egress', index_register, 0)
-    controllers['s3'].register_write('counter_ingress', index_register, 0)
+    controllers['s2'].register_write('counter_egress', 1-counter_index, 0)
+    controllers['s3'].register_write('counter_ingress', 1-counter_index, 0)
     
     if counter_s2 != counter_s3:
         print("Packets were lost on the link from port 2 of s2 to port 1 of s3")
 
-    index_register = controllers['s3'].register_read('active_counter_index', 0)
-    new_index_register_value = 0
-    if index_register == 0:
-        new_index_register_value = 1
-    controllers['s3'].register_write('active_counter_index', 0, new_index_register_value)
+    # index_register = controllers['s3'].register_read('active_counter_index', 0)
+    # new_index_register_value = 0
+    # if index_register == 0:
+    #     new_index_register_value = 1
+    controllers['s3'].register_write('active_counter_index', 0, counter_index)
 
-    counter_s3 = controllers['s3'].register_read('counter_egress', index_register)
-    counter_s4 = controllers['s4'].register_read('counter_ingress', index_register)
+    counter_s3 = controllers['s3'].register_read('counter_egress', 1-counter_index)
+    counter_s4 = controllers['s4'].register_read('counter_ingress', 1-counter_index)
     
-    print_link('s3','s4', index_register)
+    print_link('s3','s4', controllers['s3'].register_read('active_counter_index', 0))
 
-    controllers['s3'].register_write('counter_egress', index_register, 0)
-    controllers['s4'].register_write('counter_ingress', index_register, 0)
+    controllers['s3'].register_write('counter_egress', 1-counter_index, 0)
+    controllers['s4'].register_write('counter_ingress', 1-counter_index, 0)
     
     if counter_s3 != counter_s4:
         print("Packets were lost on the link from port 3 of s3 to port 1 of s4")
 
-    index_register = controllers['s4'].register_read('active_counter_index', 0)
-    new_index_register_value = 0
-    if index_register == 0:
-        new_index_register_value = 1
-    controllers['s4'].register_write('active_counter_index', 0, new_index_register_value)
+    # index_register = controllers['s4'].register_read('active_counter_index', 0)
+    # new_index_register_value = 0
+    # if index_register == 0:
+    #     new_index_register_value = 1
+    controllers['s4'].register_write('active_counter_index', 0, counter_index)
 
-    counter_s4 = controllers['s4'].register_read('counter_egress', index_register)
-    counter_s1 = controllers['s1'].register_read('counter_ingress', index_register)
+    counter_s4 = controllers['s4'].register_read('counter_egress', 1-counter_index)
+    counter_s1 = controllers['s1'].register_read('counter_ingress', 1-counter_index)
     
-    print_link('s4','s1', index_register)
+    print_link('s4','s1', controllers['s4'].register_read('active_counter_index', 0))
     
-    controllers['s4'].register_write('counter_egress', index_register, 0)
-    controllers['s1'].register_write('counter_ingress', index_register, 0)
+    controllers['s4'].register_write('counter_egress', 1-counter_index, 0)
+    controllers['s1'].register_write('counter_ingress', 1-counter_index, 0)
 
     if counter_s4 != counter_s1:
         print("Packets were lost on the link from port 2 of s4 to port 3 of s1")
         
-    print("Before Sleep: ", controllers['s1'].register_read('active_counter_index', 0))
-    print("Before Sleep: ", controllers['s2'].register_read('active_counter_index', 0))
-    print("Before Sleep: ", controllers['s3'].register_read('active_counter_index', 0))
-    print("Before Sleep: ", controllers['s4'].register_read('active_counter_index', 0))
     time.sleep(1)
-    print("After Sleep: ", controllers['s1'].register_read('active_counter_index', 0))
-    print("After Sleep: ", controllers['s2'].register_read('active_counter_index', 0))
-    print("After Sleep: ", controllers['s3'].register_read('active_counter_index', 0))
-    print("After Sleep: ", controllers['s4'].register_read('active_counter_index', 0))
