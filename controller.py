@@ -26,6 +26,18 @@ controllers['s4'].table_add('repeater', 'forward', ['2'], ['1'])
 controllers['s3'].table_add('repeater', 'forward', ['1'], ['2'])
 controllers['s3'].table_add('repeater', 'forward', ['2'], ['3'])
 
+controllers['s1'].register_write('ignore_on_port_ingress', 0, 1)
+controllers['s1'].register_write('ignore_on_port_egress', 0, 1)
+
+controllers['s2'].register_write('ignore_on_port_ingress', 0, 0)
+controllers['s2'].register_write('ignore_on_port_egress', 0, 0)
+
+controllers['s3'].register_write('ignore_on_port_ingress', 0, 2)
+controllers['s3'].register_write('ignore_on_port_egress', 0, 2)
+
+controllers['s4'].register_write('ignore_on_port_ingress', 0, 0)
+controllers['s4'].register_write('ignore_on_port_egress', 0, 0)
+
 def print_link(s1, s2, index):
     # We recommend to implement a function that prints the value of the
     # counters used for a particular link and direction.
@@ -43,7 +55,7 @@ def print_link(s1, s2, index):
     print("counter 1: ", s2, " ", counter_s2_1, "\n") 
 
 while True:
-
+    
     # This is where you need to write most of your code.
     index_register = controllers['s1'].register_read('active_counter_index', 0)
     new_index_register_value = 0
