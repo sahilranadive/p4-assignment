@@ -154,5 +154,8 @@ while True:
     if counter_s4 != counter_s1:
         print("Packets were lost on the link from port 2 of s4 to port 3 of s1")
         
-    
+    print("Before Sleep: ", controllers['s1'].register_read('active_counter_index', 0))
+    print("Before Sleep: ", controllers['s2'].register_read('active_counter_index', 0))
+    print("Before Sleep: ", controllers['s3'].register_read('active_counter_index', 0))
+    print("Before Sleep: ", controllers['s4'].register_read('active_counter_index', 0))
     time.sleep(1)
