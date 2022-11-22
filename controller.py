@@ -85,6 +85,7 @@ while True:
     if index_register == 0:
         print("I am in if")
         new_index_register_value = 1
+    print(new_index_register_value)
     controllers['s1'].register_write('active_counter_index', 0, new_index_register_value)
 
     counter_s1 = controllers['s1'].register_read('counter_egress', index_register)
