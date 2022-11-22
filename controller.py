@@ -84,7 +84,7 @@ while True:
     new_index_register_value = 0
     if index_register == 0:
         new_index_register_value = 1
-    controllers['s1'].register_write('active_counter_index', 0, new_index_register_value)
+    controllers['s1'].register_write('active_counter_index', 0, 1)
 
     counter_s1 = controllers['s1'].register_read('counter_egress', index_register)
     counter_s2 = controllers['s2'].register_read('counter_ingress', index_register)
