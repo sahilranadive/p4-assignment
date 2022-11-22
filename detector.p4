@@ -26,7 +26,7 @@ control MyIngress(inout headers hdr,
 
     /* TODO: Define the register array(s) that you will use in the ingress pipeline */
     register<bit<32>>(2) counter_ingress;
-    register<bit<32>>(1) ignore_on_port_ingress;
+    register<bit<9>>(1) ignore_on_port_ingress;
     // counter_ingress.write(0, 0);
     // counter_ingress.write(1, 0);
 
@@ -49,7 +49,7 @@ control MyIngress(inout headers hdr,
     apply {
       /* TODO: This is where you need to increment the active counter */
         bit<32> temp;
-        bit<32> ignored_port;
+        bit<9> ignored_port;
         ignore_on_port_ingress.read(ignored_port, 0);
         if (hdr.ipv4.ecn == 0 && ignored_port != standard_metadata.ingress_port) {
             counter_ingress.read(temp, 0);
@@ -75,7 +75,7 @@ control MyEgress(inout headers hdr,
     /* TODO: Define the register array(s) that you will use in the ingress pipeline */
     register<bit<32>>(2) counter_egress;
     register<bit<32>>(1) active_counter_index;
-    register<bit<32>>(1) ignore_on_port_egress;
+    register<bit<9>>(1) ignore_on_port_egress;
     // counter_egress.write(0, 0);
     // counter_egress.write(1, 0);
     // active_counter_index.write(0, 0);
@@ -85,7 +85,7 @@ control MyEgress(inout headers hdr,
         bit<32> temp;
         bit<32> index;
         active_counter_index.read(index, 0);
-        bit<32> ignored_port;
+        bit<9> ignored_port;
         ignore_on_port_egress.read(ignored_port, 0);
         if (ignored_port != standard_metadata.egress_port) {
             counter_egress.read(temp, index);
