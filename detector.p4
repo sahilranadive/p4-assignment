@@ -72,9 +72,9 @@ control MyEgress(inout headers hdr,
     /* TODO: Define the register array(s) that you will use in the ingress pipeline */
     register<bit<32>>(2) counter_egress;
     register<bit<32>>(1) active_counter_index;
-    counter_egress.write(0, 0);
-    counter_egress.write(1, 0);
-    active_counter_index.write(0, 0);
+    // counter_egress.write(0, 0);
+    // counter_egress.write(1, 0);
+    // active_counter_index.write(0, 0);
 
     apply {
         /* TODO: This is where you need to increment the active counter */
