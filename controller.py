@@ -26,7 +26,7 @@ controllers['s4'].table_add('repeater', 'forward', ['2'], ['1'])
 controllers['s3'].table_add('repeater', 'forward', ['1'], ['2'])
 controllers['s3'].table_add('repeater', 'forward', ['2'], ['3'])
 
-def print_link(s1, s2):
+def print_link(s1, s2, index):
     # We recommend to implement a function that prints the value of the
     # counters used for a particular link and direction.
     # It will help you to debug.
@@ -36,10 +36,11 @@ def print_link(s1, s2):
     counter_s1_1 = controllers[s1].register_read('counter_egress', 1)
     counter_s2_0 = controllers[s2].register_read('counter_ingress', 0)
     counter_s2_1 = controllers[s2].register_read('counter_ingress', 1)
+    print (index)
     print("counter 0: ", s1, " ", counter_s1_0) 
     print("counter 1: ", s1, " ", counter_s1_1) 
     print("counter 0: ", s2, " ", counter_s2_0) 
-    print("counter 1: ", s2, " ", counter_s2_1) 
+    print("counter 1: ", s2, " ", counter_s2_1, "\n") 
 
 while True:
 
@@ -53,7 +54,7 @@ while True:
     counter_s1 = controllers['s1'].register_read('counter_egress', index_register)
     counter_s2 = controllers['s2'].register_read('counter_ingress', index_register)
     
-    print_link('s1','s2')
+    print_link('s1','s2', index_register)
     controllers['s1'].register_write('counter_egress', index_register, 0)
     controllers['s2'].register_write('counter_ingress', index_register, 0)
     if counter_s1 != counter_s2:
