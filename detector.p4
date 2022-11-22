@@ -80,9 +80,9 @@ control MyEgress(inout headers hdr,
         /* TODO: This is where you need to increment the active counter */
         bit<32> temp;
         bit<2> index;
-        active_counter_index.read(index, 0);
-        counter_egress.read(temp, index);
-        counter_egress.write(index, temp+1);
+        active_counter_index.read((bit<32>)index, 0);
+        counter_egress.read(temp, (bit<32>)index);
+        counter_egress.write((bit<32>)index, temp+1);
         /* TODO: You also need to add the values of the active counter in every data packet using the ipv4 ecn field */
         hdr.ipv4.ecn = index;
     }
