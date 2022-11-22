@@ -34,9 +34,9 @@ net.addLink('s4', 's1')
 net.l2()
 
 # Nodes general options
-# net.enablePcapDumpAll()
+net.enablePcapDumpAll()
 net.enableLogAll()
-net.disablePcapDumpAll()
+#net.disablePcapDumpAll()
 #net.disableLogAll()
 # Start network
 net.startNetwork()
