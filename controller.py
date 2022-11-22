@@ -6,6 +6,7 @@ import time
 
 topo = load_topo('topology.json')
 controllers = {}
+counter_index = 0
 
 # Note: we now use the SimpleSwitchThriftAPI to communicate with the switches
 # and not the P4RuntimeAPI anymore.
@@ -78,27 +79,27 @@ def print_link(s1, s2, index):
     print("counter 1: ", s2, " ", counter_s2_1, "\n") 
 
 while True:
-    
+    counter_index = 1-counter_index
     # This is where you need to write most of your code.
-    index_register_s1 = controllers['s1'].register_read('active_counter_index', 0)
-    print(controllers['s1'].register_read('active_counter_index', 0))
-    new_index_register_value_s1 = 0
-    if index_register_s1 == 0:
-        print("I am in if")
-        controllers['s1'].register_write('active_counter_index', 0, 1)
-    else :
-        print("I am in else")
-        controllers['s1'].register_write('active_counter_index', 0, 0)
+    #index_register_s1 = controllers['s1'].register_read('active_counter_index', 0)
+    #print(controllers['s1'].register_read('active_counter_index', 0))
+    # new_index_register_value_s1 = 0
+    # if index_register_s1 == 0:
+    #     print("I am in if")
+    #     controllers['s1'].register_write('active_counter_index', 0, 1)
+    # else :
+    #     print("I am in else")
+    #     controllers['s1'].register_write('active_counter_index', 0, 0)
     # print(new_index_register_value_s1)
-    # controllers['s1'].register_write('active_counter_index', 0, new_index_register_value_s1)
-    print(controllers['s1'].register_read('active_counter_index', 0))
+    controllers['s1'].register_write('active_counter_index', 0, counter_index)
+    #print(controllers['s1'].register_read('active_counter_index', 0))
 
-    counter_s1 = controllers['s1'].register_read('counter_egress', index_register_s1)
-    counter_s2 = controllers['s2'].register_read('counter_ingress', index_register_s1)
+    counter_s1 = controllers['s1'].register_read('counter_egress', 1-counter_index)
+    counter_s2 = controllers['s2'].register_read('counter_ingress', 1-counter_index)
     
-    print_link('s1','s2', index_register_s1)
-    controllers['s1'].register_write('counter_egress', index_register_s1, 0)
-    controllers['s2'].register_write('counter_ingress', index_register_s1, 0)
+    print_link('s1','s2', 1-counter_index)
+    controllers['s1'].register_write('counter_egress', 1-counter_index, 0)
+    controllers['s2'].register_write('counter_ingress', 1-counter_index, 0)
     if counter_s1 != counter_s2:
         print("Packets were lost on the link from port 2 of s1 to port 1 of s2")
     
