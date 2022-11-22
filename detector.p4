@@ -50,12 +50,12 @@ control MyIngress(inout headers hdr,
       /* TODO: This is where you need to increment the active counter */
         bit<32> temp;
         bit<32> ignored_port;
-        ignore_on_port.read(ignored_port, 0);
-        if (hdr.ipv4.ecn == 0 && ignore_on_port_ingress != standard_metadata.ingress_port) {
+        ignore_on_port_ingress.read(ignored_port, 0);
+        if (hdr.ipv4.ecn == 0 && ignored_port != standard_metadata.ingress_port) {
             counter_ingress.read(temp, 0);
             counter_ingress.write(0, temp+1);
         }
-        if (hdr.ipv4.ecn == 1 && ignore_on_port_ingress != standard_metadata.ingress_port) {
+        if (hdr.ipv4.ecn == 1 && ignored_port != standard_metadata.ingress_port) {
             counter_ingress.read(temp, 1);
             counter_ingress.write(1, temp+1);
         }
@@ -85,7 +85,9 @@ control MyEgress(inout headers hdr,
         bit<32> temp;
         bit<32> index;
         active_counter_index.read(index, 0);
-        if (ignore_on_port_egress != standard_metadata.egress_port) {
+        bit<32> ignored_port;
+        ignore_on_port_egress.read(ignored_port, 0);
+        if (ignored_port != standard_metadata.egress_port) {
             counter_egress.read(temp, index);
             counter_egress.write(index, temp+1);
         }
