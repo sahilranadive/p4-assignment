@@ -80,21 +80,21 @@ def print_link(s1, s2, index):
 while True:
     
     # This is where you need to write most of your code.
-    index_register = controllers['s1'].register_read('active_counter_index', 0)
-    new_index_register_value = 0
-    if index_register == 0:
+    index_register_s1 = controllers['s1'].register_read('active_counter_index', 0)
+    new_index_register_value_s1 = 0
+    if index_register_s1 == 0:
         print("I am in if")
-        new_index_register_value = 1
-    print(new_index_register_value)
-    controllers['s1'].register_write('active_counter_index', 0, 1)
+        new_index_register_value_s1 = 1
+    print(new_index_register_value_s1)
+    controllers['s1'].register_write('active_counter_index', 0, new_index_register_value_s1)
     print(controllers['s1'].register_read('active_counter_index', 0))
 
-    counter_s1 = controllers['s1'].register_read('counter_egress', index_register)
-    counter_s2 = controllers['s2'].register_read('counter_ingress', index_register)
+    counter_s1 = controllers['s1'].register_read('counter_egress', index_register_s1)
+    counter_s2 = controllers['s2'].register_read('counter_ingress', index_register_s1)
     
-    print_link('s1','s2', index_register)
-    controllers['s1'].register_write('counter_egress', index_register, 0)
-    controllers['s2'].register_write('counter_ingress', index_register, 0)
+    print_link('s1','s2', index_register_s1)
+    controllers['s1'].register_write('counter_egress', index_register_s1, 0)
+    controllers['s2'].register_write('counter_ingress', index_register_s1, 0)
     if counter_s1 != counter_s2:
         print("Packets were lost on the link from port 2 of s1 to port 1 of s2")
     
