@@ -35,8 +35,8 @@ net.l2()
 
 # Nodes general options
 # net.enablePcapDumpAll()
-# net.enableLogAll()
+net.enableLogAll()
 net.disablePcapDumpAll()
-net.disableLogAll()
+#net.disableLogAll()
 # Start network
 net.startNetwork()
