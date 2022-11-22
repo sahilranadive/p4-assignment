@@ -97,7 +97,7 @@ while True:
     counter_s1 = controllers['s1'].register_read('counter_egress', 1-counter_index)
     counter_s2 = controllers['s2'].register_read('counter_ingress', 1-counter_index)
     
-    print_link('s1','s2', 1-counter_index)
+    print_link('s1','s2', controllers['s1'].register_read('active_counter_index', 0))
     controllers['s1'].register_write('counter_egress', 1-counter_index, 0)
     controllers['s2'].register_write('counter_ingress', 1-counter_index, 0)
     if counter_s1 != counter_s2:
