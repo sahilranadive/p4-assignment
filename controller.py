@@ -36,11 +36,10 @@ def print_link(s1, s2):
     counter_s1_1 = controllers[s1].register_read('counter_egress', 1)
     counter_s2_0 = controllers[s2].register_read('counter_ingress', 0)
     counter_s2_1 = controllers[s2].register_read('counter_ingress', 1)
-    print("counter s1 0: ",counter_s1_0) 
-    print("counter s1 1: ",counter_s1_1) 
-    print("counter s2 0: ",counter_s2_0) 
-    print("counter s2 1: ",counter_s2_1) 
-
+    print("counter 0: ", s1, " ", counter_s1_0) 
+    print("counter 1: ", s1, " ", counter_s1_1) 
+    print("counter 0: ", s2, " ", counter_s2_0) 
+    print("counter 1: ", s2, " ", counter_s2_1) 
 
 while True:
 
