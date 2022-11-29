@@ -17,7 +17,6 @@ for p4switch in topo.get_p4switches():
 # The following lines enable the forwarding as required for assignment 0.
 controllers['s1'].table_add('repeater', 'forward', ['1'], ['2'])
 controllers['s1'].table_add('repeater', 'forward', ['3'], ['1'])
-controllers['s1'].table_add('repeater', 'forward', ['2'], ['1'])
 
 controllers['s2'].table_add('repeater', 'forward', ['1'], ['2'])
 controllers['s2'].table_add('repeater', 'forward', ['2'], ['1'])
@@ -26,7 +25,7 @@ controllers['s4'].table_add('repeater', 'forward', ['1'], ['2'])
 controllers['s4'].table_add('repeater', 'forward', ['2'], ['1'])
 
 controllers['s3'].table_add('repeater', 'forward', ['1'], ['2'])
-controllers['s3'].table_add('repeater', 'forward', ['2'], ['1'])
+controllers['s3'].table_add('repeater', 'forward', ['2'], ['3'])
 
 controllers['s1'].register_write('counter_ingress_A', 0, 0)
 controllers['s1'].register_write('counter_ingress_A', 1, 0)
