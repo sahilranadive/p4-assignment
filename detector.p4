@@ -109,12 +109,16 @@ control MyEgress(inout headers hdr,
         //     counter_egress.read(temp, index);
         //     counter_egress.write(index, temp+1);
         // }
-        if (egress_port_for_counter_A == standard_metadata.egress_port) {
+        bit<9> port_counter_A;
+        egress_port_for_counter_A.read(port_counter_A, 0);
+        bit<9> port_counter_B;
+        egress_port_for_counter_B.read(port_counter_B, 0);
+        if (port_counter_A == standard_metadata.egress_port) {
             active_counter_index_A.read(index, 0);
             counter_egress_A.read(temp, index);
             counter_egress_A.write(index, temp + 1);
         }
-        if (egress_port_for_counter_B == standard_metadata.egress_port) {
+        if (port_counter_B == standard_metadata.egress_port) {
             active_counter_index_B.read(index, 0);
             counter_egress_B.read(temp, index);
             counter_egress_B.write(index, temp + 1);
