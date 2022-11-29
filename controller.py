@@ -111,7 +111,7 @@ def print_link(s1, s2, index):
 
     print ("On link from ",s2, " to ",s1)
     print("previously active egress counter B: ", s2, " ", counter_s2_B) 
-    print("previously active ingress counter B: ", s1, " ", counter_s2_A, "\n") 
+    print("previously active ingress counter B: ", s1, " ", counter_s1_B, "\n") 
 
 while True:
     counter_index = 1-counter_index
