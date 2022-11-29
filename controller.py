@@ -25,7 +25,7 @@ controllers['s4'].table_add('repeater', 'forward', ['1'], ['2'])
 controllers['s4'].table_add('repeater', 'forward', ['2'], ['1'])
 
 controllers['s3'].table_add('repeater', 'forward', ['1'], ['2'])
-controllers['s3'].table_add('repeater', 'forward', ['2'], ['3'])
+controllers['s3'].table_add('repeater', 'forward', ['2'], ['1'])
 
 controllers['s1'].register_write('counter_ingress_A', 0, 0)
 controllers['s1'].register_write('counter_ingress_A', 1, 0)
