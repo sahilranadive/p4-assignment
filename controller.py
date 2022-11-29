@@ -105,13 +105,26 @@ def print_link(s1, s2, index):
     
     counter_s2_A = controllers[s2].register_read('counter_ingress_A', index)
     counter_s2_B = controllers[s2].register_read('counter_egress_B', index)
-    print ("On link from ",s1, " to ",s2)
+    print ("On link from ",s1, " to ",s2, " and the index is: ",index)
     print("previously active egress counter A: ", s1, " ", counter_s1_A) 
     print("previously active ingress counter A: ", s2, " ", counter_s2_A) 
 
     print ("On link from ",s2, " to ",s1)
     print("previously active egress counter B: ", s2, " ", counter_s2_B) 
     print("previously active ingress counter B: ", s1, " ", counter_s1_B, "\n") 
+
+    counter_s1_A = controllers[s1].register_read('counter_egress_A', 1-index)
+    counter_s1_B = controllers[s1].register_read('counter_ingress_B', 1-index)
+    
+    counter_s2_A = controllers[s2].register_read('counter_ingress_A', 1-index)
+    counter_s2_B = controllers[s2].register_read('counter_egress_B', 1-index)
+    print ("On link from ",s1, " to ",s2, " and the index is: ",1-index)
+    print("currently active egress counter A: ", s1, " ", counter_s1_A) 
+    print("currently active ingress counter A: ", s2, " ", counter_s2_A) 
+
+    print ("On link from ",s2, " to ",s1)
+    print("currently active egress counter B: ", s2, " ", counter_s2_B) 
+    print("currently active ingress counter B: ", s1, " ", counter_s1_B, "\n") 
 
 while True:
     counter_index = 1-counter_index
