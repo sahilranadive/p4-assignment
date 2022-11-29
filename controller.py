@@ -139,7 +139,7 @@ while True:
 
 
 
-    controllers['s12'].register_write('active_counter_index_A', 0, counter_index)
+    controllers['s2'].register_write('active_counter_index_A', 0, counter_index)
     controllers['s3'].register_write('active_counter_index_B', 0, counter_index)
 
     counter_s2_egress = controllers['s2'].register_read('counter_egress_A', 1-counter_index)
